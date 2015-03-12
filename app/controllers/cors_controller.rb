@@ -4,7 +4,7 @@ class CorsController < ApplicationController
   def preflight
     begin
       http_request_verb = request.headers['Access-Control-Request-Method']
-      raise unless ["PUT", "PATCH", "DELETE"].include? http_request_verb
+      raise unless ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"].include? http_request_verb
 
       # This line will raise an exception if the path does not resolve to any controller/action.
       details = Rails.application.routes.recognize_path(request.original_fullpath, :method => http_request_verb.downcase.to_sym)
